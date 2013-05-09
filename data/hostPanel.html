@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <style>
+    #hosts {
+      overflow-y: scroll;
+      max-height: 460px;
+    }
+
+    div.ca {
+      white-space: nowrap;
+      overflow-x: hidden;
+    }
+
+    div.used {
+      background-color: green;
+    }
+
+    div.unused {
+      background-color: red;
+    }
+  </style>
+</head>
+<body>
+  <div id="hosts"></div>
+  <div>
+    <button type="button" onclick="addon.postMessage('distrust');">Distrust Unused CAs</button>
+    <button type="button" onclick="addon.postMessage('retrust');">Reset CA Trust</button>
+  </div>
+  <script>
+    addon.on("message", function(message) {
+      if (message.kind == "reset") {
+        var hosts = document.getElementById("hosts");
+        while (hosts.firstChild) hosts.removeChild(hosts.firstChild);
+        return;
+      }
+
+      var hosts = document.getElementById("hosts");
+      var host = document.createElement("div");
+      var text = document.createTextNode("(" + message.usages + ") " + message.element);
+      host.appendChild(text);
+      host.className = "ca " + message.kind;
+      hosts.appendChild(host);
+    });
+  </script>
+</body>
+</html>

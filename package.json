@@ -1,0 +1,10 @@
+{
+  "name": "certacus",
+  "fullName": "Certacus",
+  "id": "jid1-O2ejgg1SUVgVOA",
+  "description": "log what CAs you encounter",
+  "author": "mozkeeler@gmail.com",
+  "license": "MPL 2.0",
+  "version": "0.9",
+  "homepage": "https://github.com/mozkeeler/certacus"
+}
